@@ -21,7 +21,12 @@ then
 else
 	echo "Upstream is not added.";
 	echo "Let us set upstream first."
-	upstream
+	read -p "Press Y to add, N to skip" yn
+	case $yn in
+        [Yy]* ) upstream; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
 fi
 
 update() {
