@@ -21,12 +21,12 @@ then
 else
 	echo "Upstream is not added.";
 	echo "Let us set upstream first."
-	read -p "Press Y to add, N to skip" yn
+	read -p "Press Y to add, N to skip: " yn
 	case $yn in
-        [Yy]* ) upstream; ;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+		[Yy]* ) upstream; ;;
+		[Nn]* ) true;;
+		* ) echo "Please answer yes or no.";;
+	esac
 fi
 
 update() {
@@ -54,22 +54,19 @@ feature() {
 
 
 PS3='Please enter your choice: '
-options=("Update" "Push" "Option 3" "Quit")
+options=("Update" "Push" "Quit")
 select opt in "${options[@]}"
 do
-    case $opt in
-        "Update")
-					update
-					;;
-        "Push")
-            push
-            ;;
-        "Option 3")
-            echo "you chose choice $REPLY which is $opt"
-            ;;
-        "Quit")
-            break
-            ;;
-        *) echo "invalid option $REPLY";;
-    esac
+	case $opt in
+		"Update")
+			update
+			;;
+		"Push")
+			push
+			;;
+		"Quit")
+			break
+			;;
+		*) echo "invalid option $REPLY";;
+	esac
 done
