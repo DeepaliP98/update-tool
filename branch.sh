@@ -31,6 +31,12 @@ update() {
 
 }
 
+push() {
+	echo "Pushing ..."
+	git push $ORIGIN master
+
+}
+
 feature() {
 	echo "Done. Now, let's get a branch made for you."
 	echo -e "Enter the name of the branch you want to create: \c"
@@ -42,7 +48,7 @@ feature() {
 
 
 PS3='Please enter your choice: '
-options=("Update" "Option 2" "Option 3" "Quit")
+options=("Update" "Push" "Option 3" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -50,7 +56,7 @@ do
 					update
 					;;
         "Option 2")
-            echo "you chose choice 2"
+            push
             ;;
         "Option 3")
             echo "you chose choice $REPLY which is $opt"
