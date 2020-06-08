@@ -23,8 +23,8 @@ else
 	echo "Let us set upstream first."
 	read -p "Press Y to add, N to skip" yn
 	case $yn in
-        [Yy]* ) upstream; break;;
-        [Nn]* ) exit;;
+        [Yy]* ) upstream; ;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 fi
