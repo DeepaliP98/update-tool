@@ -4,15 +4,6 @@
 ORIGIN=$(git config --get remote.origin.url)
 UPSTREAM==$(git config --get remote.upstream.url)
 
-if (git remote show | grep -q upstream)
-then
-	echo "Upstream URL: $UPSTREAM ";
-else
-	echo "Upstream is not added.";
-	echo "Let us set upstream first."
-	upstream
-fi
-
 upstream() {
 	echo -e "Enter the URL of the original repo: \c"
 	read REPO
@@ -24,6 +15,15 @@ upstream() {
 
 }
 
+if (git remote show | grep -q upstream)
+then
+	echo "Upstream URL: $UPSTREAM ";
+else
+	echo "Upstream is not added.";
+	echo "Let us set upstream first."
+	upstream
+fi
+
 update() {
 	echo "Updating ..."
 	git pull upstream master
@@ -32,6 +32,7 @@ update() {
 }
 
 push() {
+	sleep 1
 	echo "Pushing ..."
 	git push $ORIGIN master
 
@@ -55,7 +56,7 @@ do
         "Update")
 					update
 					;;
-        "Option 2")
+        "Push")
             push
             ;;
         "Option 3")
